@@ -1,0 +1,86 @@
+﻿@page
+@model BootShop.Pages.Account.LogoutModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Boot Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #555;
+        }
+
+        .btn-secondary {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Logout</h2>
+        <form method="post">
+            <p>Вы действительно хотите выйти?</p>
+            <button type="submit" class="btn btn-primary">Logout</button>
+            <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

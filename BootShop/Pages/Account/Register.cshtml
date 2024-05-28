@@ -1,0 +1,176 @@
+﻿@page
+@model BootShop.Pages.Account.RegisterModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Register Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .custom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .content {
+            width: 330px;
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94,104,121,0.288);
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url("https://cdn.dribbble.com/users/2156796/screenshots/19992280/media/7d2ee3a4d15d1f335419059066067694.gif");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .content .text {
+            font-size: 33px;
+            font-weight: 600;
+            margin-bottom: 35px;
+            color: #595959;
+        }
+
+        .field {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .field input {
+            height: 50px;
+            width: 100%;
+            padding-left: 45px;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            background: #dde1e7;
+            color: #595959;
+            border-radius: 25px;
+            box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #ffffff73;
+        }
+
+        .field input:focus {
+            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #ffffff73;
+        }
+
+        .field label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 15px;
+            pointer-events: none;
+            color: #666666;
+            transition: 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .field input:valid ~ label,
+        .field input:focus ~ label {
+            opacity: 0;
+        }
+
+        button {
+            margin: 15px 0;
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            line-height: 50px;
+            font-weight: 600;
+            background: #3498db;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #ffffff;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .sign-up {
+            margin: 10px 0;
+            color: #595959;
+            font-size: 16px;
+        }
+
+        .sign-up a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .sign-up a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-container">
+        <div class="content">
+            <div class="text">Register</div>
+            <form method="post" class="mt-4" id="registerForm">
+                <div class="field">
+                    <input type="email" name="email" id="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="field">
+                    <input type="text" name="fullName" id="fullName" required>
+                    <label for="fullName">Full Name</label>
+                </div>
+                <div class="field">
+                    <input type="tel" name="phoneNumber" id="phoneNumber" required>
+                    <label for="phoneNumber">Phone Number</label>
+                </div>
+                <div class="field">
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="field">
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
+                    <label for="confirmPassword">Confirm Password</label>
+                </div>
+                <button type="submit">Register</button>
+                <button type="button" onclick="goBack()">Back</button>
+                <div class="sign-up">
+                    Already have an account? <a asp-area="" asp-page="/Account/Login">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fields = document.querySelectorAll('.field input');
+            fields.forEach(function (field) {
+                field.addEventListener('input', function () {
+                    if (this.value !== '') {
+                        this.nextElementSibling.style.opacity = '0';
+                    } else {
+                        this.nextElementSibling.style.opacity = '0.5';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

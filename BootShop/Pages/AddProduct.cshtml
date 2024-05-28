@@ -1,0 +1,230 @@
+﻿@page
+@model BootShop.Pages.AddProductModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product - Boot Shop</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="url"],
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .submit-button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-submit {
+            align-items: center;
+            background: #f5f5fa;
+            border: 0;
+            border-radius: 8px;
+            box-shadow: -10px -10px 30px 0 #fff,10px 10px 30px 0 #1d0dca17;
+            box-sizing: border-box;
+            color: #2a1f62;
+            cursor: pointer;
+            display: flex;
+            font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+            font-size: 1rem;
+            justify-content: center;
+            line-height: 1.5rem;
+            padding: 15px;
+            position: relative;
+            text-align: left;
+            transition: .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: pre;
+            width: 200%;
+            word-break: normal;
+            word-spacing: normal;
+            margin-top: 5%;
+            text-decoration: none;
+            border: 1px solid #1d0dca17;
+            margin-top: 10%;
+        }
+
+        .button-submit:hover {
+            background: #f8f8ff;
+            box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+            text-decoration: none;
+            border: 1px solid #4285f4;
+        }
+
+        .alert {
+            grid-column: 1 / -1;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Product</h1>
+
+        @if (Model.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+
+        <form method="post">
+            <div class="form-group">
+                <label for="product_name">Наименование товара</label>
+                <input type="text" id="product_name" name="product_name" required />
+            </div>
+            <div class="form-group">
+                <label for="brand_name">Название бренда</label>
+                <input type="text" id="brand_name" name="brand_name" required />
+            </div>
+            <div class="form-group">
+                <label for="article">Артикль</label>
+                <input type="text" id="article" name="article" required />
+            </div>
+            <div class="form-group">
+                <label for="price">Цена</label>
+                <input type="number" id="price" name="price" required />
+            </div>
+            <div class="form-group">
+                <label for="size1">Размер 1</label>
+                <input type="text" id="size1" name="size1" required />
+            </div>
+            <div class="form-group">
+                <label for="size2">Размер 2</label>
+                <input type="text" id="size2" name="size2" />
+            </div>
+            <div class="form-group">
+                <label for="size3">Размер 3</label>
+                <input type="text" id="size3" name="size3" />
+            </div>
+            <div class="form-group">
+                <label for="season">Сезон</label>
+                <input type="text" id="season" name="season" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="gender">Гендер</label>
+                <input type="text" id="gender" name="gender" required />
+            </div>
+            <div class="form-group">
+                <label for="color">Цвет</label>
+                <input type="text" id="color" name="color" required />
+            </div>
+            <div class="form-group">
+                <label for="country">Страна производства</label>
+                <input type="text" id="country" name="country" required />
+            </div>
+            <div class="form-group">
+                <label for="composition">Материалы</label>
+                <input type="text" id="composition" name="composition" required />
+            </div>
+            <div class="form-group">
+                <label for="image_url1">Фото URL 1</label>
+                <input type="url" id="image_url1" name="image_url1" required />
+            </div>
+            <div class="form-group">
+                <label for="image_url2">Фото URL 2</label>
+                <input type="url" id="image_url2" name="image_url2" />
+            </div>
+            <div class="form-group">
+                <label for="image_url3">Фото URL 3</label>
+                <input type="url" id="image_url3" name="image_url3" />
+            </div>
+            <div class="form-group">
+                <label for="image_url4">Фото URL 4</label>
+                <input type="url" id="image_url4" name="image_url4" />
+            </div>
+            <div class="form-group">
+                <label for="image_url5">Фото URL 5</label>
+                <input type="url" id="image_url5" name="image_url5" />
+            </div>
+            <div class="form-group">
+                <label for="image_url6">Фото URL 6</label>
+                <input type="url" id="image_url6" name="image_url6" />
+            </div>
+            <div class="form-group">
+                <label for="image_url7">Фото URL 7</label>
+                <input type="url" id="image_url7" name="image_url7" />
+            </div>
+            <button type="submit" class="button-submit">Добавить</button>
+        </form>
+    </div>
+</body>
+</html>

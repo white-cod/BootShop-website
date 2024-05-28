@@ -1,0 +1,117 @@
+﻿@page
+@model BootShop.Pages.DetailsModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Boot Shop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<style>
+
+    .button-buy {
+        align-items: center;
+        background: #f5f5fa;
+        border: 0;
+        border-radius: 8px;
+        box-shadow: -10px -10px 30px 0 #fff,10px 10px 30px 0 #1d0dca17;
+        box-sizing: border-box;
+        color: #2a1f62;
+        cursor: pointer;
+        display: flex;
+        font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+        font-size: 1rem;
+        justify-content: center;
+        line-height: 1.5rem;
+        padding: 15px;
+        position: relative;
+        text-align: left;
+        transition: .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: pre;
+        width: 100%;
+        word-break: normal;
+        word-spacing: normal;
+        margin-top: 5%;
+        text-decoration: none;
+        border: 1px solid #1d0dca17;
+        margin-top: 10%;
+    }
+
+    .button-buy:hover {
+        background: #f8f8ff;
+        box-shadow: -15px -15px 30px 0 #fff, 15px 15px 30px 0 #1d0dca17;
+        text-decoration: none;
+        border: 1px solid #4285f4;
+    }
+
+</style>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Boot Shop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="shoeCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < Model.ImageUrls.Count; i++)
+                            {
+                                <div class="carousel-item @(i == 0 ? "active" : "")">
+                                    <img src="@Model.ImageUrls[i]" class="d-block w-100 img-fluid" alt="Shoe Image @(i + 1)">
+                                </div>
+                            }
+                        </div>
+                        <a class="carousel-control-prev" href="#shoeCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#shoeCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1>@Model.Shoe.product_name</h1>
+                    <p><strong>Бренд:</strong> @Model.Shoe.brand_name</p>
+                    <p><strong>Артикль:</strong> @Model.Shoe.article</p>
+                    <p><strong>Цена:</strong> $@Model.Shoe.price ¥</p>
+                    <p><strong>Размер:</strong> @Model.Shoe.size1, @Model.Shoe.size2, @Model.Shoe.size3</p>
+                    <p><strong>Сезон:</strong> @Model.Shoe.season</p>
+                    <p><strong>Описание:</strong> @Model.Shoe.description</p>
+                    <p><strong>Гендер:</strong> @Model.Shoe.gender</p>
+                    <p><strong>Цвет:</strong> @Model.Shoe.color</p>
+                    <p><strong>Страна производства:</strong> @Model.Shoe.country</p>
+                    <p><strong>Материалы:</strong> @Model.Shoe.composition</p>
+
+                    <form method="post" asp-page-handler="AddToCart">
+                        <input type="hidden" name="id" value="@Model.Shoe.Id" />
+                        <button type="submit" class="button-buy">В Корзину</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

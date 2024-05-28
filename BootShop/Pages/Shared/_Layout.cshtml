@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Boots</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/BootShop.styles.css" asp-append-version="true" />
+
+    <style>
+        
+        .container-right {
+            float: right;
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .button-log {
+            align-items: center;
+            appearance: none;
+            background-color: #fff;
+            border-radius: 24px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+            box-sizing: border-box;
+            color: #3c4043;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans",Roboto,Arial,sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform,opacity;
+            z-index: 0;
+            margin-right: 10px;
+            text-decoration: none;
+            width: 110px;
+        }
+
+        .button-log:hover {
+            background: #F6F9FE;
+            text-decoration: none;
+        }
+
+        .button-log:active {
+            box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+            outline: none;
+        }
+
+        .button-log:focus {
+            outline: none;
+            border: 2px solid #4285f4;
+        }
+
+        .button-log:not(:disabled) {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        .button-log:not(:disabled):hover {
+            box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+        }
+
+        .button-log:not(:disabled):focus {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        .button-log:not(:disabled):active {
+            box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+        }
+
+        .button-log:disabled {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+    </style>
+
+</head>
+<body>
+    @if (!Context.Request.Path.StartsWithSegments("/Account/Login") & !Context.Request.Path.StartsWithSegments("/Account/Register") & !Context.Request.Path.StartsWithSegments("/AddProduct") & !Context.Request.Path.StartsWithSegments("/Account/Logout"))
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">BootShop</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="navbar-nav flex-grow-1" style="width: 500px;">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="ThankYou">Thank You</a>
+                                </li>
+                                @if (User.HasClaim(c => c.Type == "IsAdmin" && c.Value == "True"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-page="AddProduct">Add Product</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav flex-grow-1" style="width: 500px;">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Account/Login">Thank You</a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+
+                <div class="container-right" style="margin-right: auto;">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-dark">Welcome, @User.Identity.Name</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout">Logout</a>
+                            </li>
+                            <li class="nav-item" style="border-radius: 1em; width: 40px">
+                                <a class="button-log" asp-area="" asp-page="/Account/Profile">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/020/911/740/original/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png" alt="Image Description" width="20" height="20">
+                                </a>
+                            </li>
+                            <li class="nav-item" style="border-radius: 1em; width: 40px">
+                                <a class="button-log" asp-area="" asp-page="Cart" style="margin-left: 30%">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/027/381/351/original/shopping-cart-icon-shopping-trolley-icon-shopping-cart-logo-container-for-goods-and-products-economics-symbol-design-elements-basket-symbol-silhouette-retail-design-elements-vector.jpg" alt="Image Description" width="20" height="20">
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="button-log" asp-area="" asp-page="/Account/Register">Sign up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="button-log" asp-area="" asp-page="/Account/Login">Log in</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    }
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
